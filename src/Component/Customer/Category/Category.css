@@ -1,0 +1,34 @@
+.category-area nav li {
+	color: black;
+	cursor: pointer;
+	font-weight: 600;
+}
+.category-area nav .active {
+	color: red;
+}
+.category-area nav .active::after {
+	content: "";
+	width: 80%;
+	margin: 10px auto;
+	height: 1px;
+	background-color: rgb(255, 69, 101);
+	display: block;
+}
+.category-area .card {
+	border: none;
+}
+.category-area .card-img-top {
+	width: 60%;
+	display: block;
+	padding-top: 10px;
+	margin: 0 auto;
+}
+.category-area div > a {
+	color: #000;
+}
+.category-area div > a:hover {
+	text-decoration: none;
+}
+.category-area .card:hover {
+	box-shadow: 0 5px 13px 0px rgb(210, 210, 210);
+}
