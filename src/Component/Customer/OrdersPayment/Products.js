@@ -72,7 +72,7 @@ class Products extends Component {
                   </p>
                   <p>{product.description}</p>
                   <p>
-                    Avaiable Sizes:{" "}
+                    Avaiable categories:{" "}
                     {product.availableSizes.map((x) => (
                       <span>
                         {" "}

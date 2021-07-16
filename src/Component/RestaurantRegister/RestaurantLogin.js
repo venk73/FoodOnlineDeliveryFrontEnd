@@ -18,11 +18,11 @@ const RestaurantLogin=({handleChange})=>{
         remember: false
     }
     const signinHandler =()=>{
-        history.push('/RestaurantDashboard');
+        history.push('/restaurantdashboard');
     }
     const validationSchema = Yup.object().shape({
         username: Yup.string().email('please enter valid email').required("Required"),
-        password: Yup.string().required("Required")
+        password: Yup.string().min(8,'password size should be 8 characters ').required("Required")
     })
     const onSubmit = (values, props) => {
         console.log(values)
@@ -41,12 +41,12 @@ const RestaurantLogin=({handleChange})=>{
                 </Grid>
                 <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                     {(props) => (
-                        <Form>
-                            <Field as={TextField} label='Username' name="username"
+                        <Form onSubmit={signinHandler}>
+                            <Field as={TextField} label='Username' type="email" name="username" 
                                 placeholder='Enter username' fullWidth required
                                 helperText={<ErrorMessage name="username" />}
                             />
-                            <Field as={TextField} label='Password' name="password"
+                            <Field as={TextField} label='Password' name="password" 
                                 placeholder='Enter password' type='password' fullWidth required
                                 helperText={<ErrorMessage name="password" />} />
                             <Field as={FormControlLabel}
@@ -58,8 +58,9 @@ const RestaurantLogin=({handleChange})=>{
                                 }
                                 label="Remember me"
                             />
-                        
-							<Button onClick={signinHandler}>Sign In</Button>
+                         <Button type='submit' color='primary' variant="contained" disabled={props.isSubmitting}
+                                style={btnstyle} fullWidth>{props.isSubmitting ? "Loading" : "Sign in"}</Button>
+							{/* <Button onClick={signinHandler}>Sign In</Button> */}
 					
                         </Form>
                     )}

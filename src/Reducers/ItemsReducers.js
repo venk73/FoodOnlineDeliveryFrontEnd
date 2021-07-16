@@ -21,7 +21,7 @@ const ItemsReducers=(state = itemsReducerDefaultState, action) => {
                 }
             });
         case 'GET_ITEMS':
-            return action.item;
+            return action.items;
         default:
             return state;
     }

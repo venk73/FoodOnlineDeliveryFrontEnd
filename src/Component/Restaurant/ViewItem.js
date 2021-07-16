@@ -3,11 +3,11 @@ import React,{useState,useEffect} from 'react'
 import axios from "axios";
 import {Link} from 'react-router-dom'
 
-const RemoveItem=()=>
+const ViewItem=()=>
 {
     //useState with blank array
     const [item,setItems]= useState([]);
-
+    
     //to perform some action on a page
     //we will call loadUser on page load 
     useEffect(()=>
@@ -15,10 +15,10 @@ const RemoveItem=()=>
        loadItem();
 
     },[]);
-    const loadItem= async (itemId)=>
+    const loadItem= async ()=>
     {
         //await will wait untill the request is not completed
-        const result=await axios.get(`http://localhost:1222/api/items/viewItemByItemId/${itemId}`);
+        const result=await axios.get(`http://localhost:1222/api/items/findAllItems`);
         //Axios is a HttpClient --> get,put,delete,post all return Promise
        //set the data to Home page
        console.log(result.data)
@@ -49,23 +49,22 @@ const RemoveItem=()=>
   <th scope="col">itemId</th>
   <th scope="col">itemName</th>
   <th scope="col">cost</th>
-
+<th scope="col">action</th>
   
 </tr>
 </thead>
 <tbody>
 {
 item.map((item,index)=>(
-  
+
 <tr>
 <th scope="row">{index+1}</th>
 <td>{item.itemId}</td>
 <td>{item.itemName}</td>
 <td>{item.cost}</td>
-
 <td>
-<Link class="btn btn-primary mr-2" to={`/Add/${item.itemId}`}>Add</Link>
-  <Link class="btn btn-outline-primary mr-2"  to={`/Edit/${item.itemId}`}>Edit</Link>
+<Link class="btn btn-primary mr-2" to={`/add/${item}`}>Add</Link>
+  {/* <Link class="btn btn-outline-primary mr-2"  to={`/Edit/${item.itemId}`}>Edit</Link> */}
   <Link class="btn btn-danger mr-2" onClick={()=> RemoveItem(item.itemId)}>Delete</Link>
 </td>
 </tr>
@@ -88,4 +87,4 @@ item.map((item,index)=>(
     
 
 
-export default RemoveItem;
+export default ViewItem;

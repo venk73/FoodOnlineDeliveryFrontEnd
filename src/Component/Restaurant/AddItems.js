@@ -6,13 +6,13 @@ const AddItems = ()=>
 {
     let history= useHistory();
     const [item,setItems]= useState({
-        itemId:"",
+       
         itemName:"",
         cost:""
         
     });
     //destruction for user
-    const {itemId,itemName,cost} = item;
+    const {itemName,cost} = item;
 
     const onInputChange= (e)=>
     {
@@ -27,7 +27,7 @@ const AddItems = ()=>
         //call post method
         await axios.post("http://localhost:1222/api/items/addItems",item);
         //redirect to home page after storing
-        history.push("/");
+        history.push("/view");
 
     }
     return (
@@ -37,14 +37,7 @@ const AddItems = ()=>
             <div className="w-75 mx-auto shadow p-5">
                 <h2 className="text-center mb-4">Add Item</h2>
                 <form onSubmit={e=> onSubmit(e)}>
-                    <div className="form-group">
-                       <input type="text"
-                            className="form-control form-control-lg"
-                            placeholder="Enter your ItemId"
-                            name="itemId"
-                            value={itemId}
-                            onChange={(e)=> onInputChange(e)} />
-                    </div>
+                   
                     <div className="form-group">
                        <input type="text"
                             className="form-control form-control-lg"

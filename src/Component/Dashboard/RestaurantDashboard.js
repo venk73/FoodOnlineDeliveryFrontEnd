@@ -10,15 +10,15 @@ class RestaurantDashboard extends React.Component{
                 <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav >
                <h4 > <NavDropdown title="Account" id="collasible-nav-dropdown" style={{color:"tomato"}}>
-                  <NavDropdown.Item href="/RestaurantEditProfile" >EditProfile</NavDropdown.Item>
+                  <NavDropdown.Item href="/restauranteditprofile" >EditProfile</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/Orders" >Orders</NavDropdown.Item>
+                  <NavDropdown.Item href="/orders" >Orders</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/Terms" >Terms And Conditions</NavDropdown.Item>
+                  <NavDropdown.Item href="/terms" >Terms And Conditions</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/Help" >Help</NavDropdown.Item>
+                  <NavDropdown.Item href="/help" >Help</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/MyProfile" >Logout</NavDropdown.Item>
+                  <NavDropdown.Item href="/myprofile" >Logout</NavDropdown.Item>
                   <NavDropdown.Divider />
                 </NavDropdown></h4>
                 </Nav>
@@ -34,18 +34,18 @@ class RestaurantDashboard extends React.Component{
                    <br/>
                    <br/>
             <div className="row">
-                    <div className="col-md-8">
+                    {/* <div className="col-md-8">
                        <p style={{color:"white"}}><h4><center>Use this service to Add items</center></h4></p>
                     </div>
                     <div className="col-md-4">
                     <Link to="/Add" className="btn btn-lg btn-info">Add Item</Link><hr/>
                     </div>
-                    <hr/>
+                    <hr/> */}
                     <div className="col-md-8">
-                       <p style={{color:"white"}}><h4><center>Use this service to update items</center></h4></p>
+                       <p style={{color:"white"}}><h4><center>Use this service to check for items</center></h4></p>
                     </div>
                     <div className="col-md-4">
-                    <Link to="/delete" className="btn btn-lg btn-info">update Item</Link><hr/>
+                    <Link to="/view" className="btn btn-lg btn-info">Items</Link><hr/>
                     </div>
                     <hr/>
                     </div>

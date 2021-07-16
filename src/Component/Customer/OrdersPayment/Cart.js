@@ -6,7 +6,7 @@ import Modal from "react-modal";
 import Zoom from "react-reveal/Zoom";
 import { removeFromCart } from "../../../Actions/cartActions";
 import { createOrder, clearOrder } from "../../../Actions/orderActions";
-
+import { Link } from "react-router-dom";
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -170,10 +170,22 @@ class Cart extends Component {
                           ></input>
                         </li>
                         <li>
-                
+                        <label for="Mode of Payment">Choose payment mode:</label>
+                      
+
+<select name="Payment" id="payment">
+<option value="Select">...Select...</option>
+  <option value="PhonePe">PhonePe</option>
+  <option value="Paytm">Paytm</option>
+  <option value="GPay">GPay</option>
+  <option value="Cash on delivery">Cash on delivery</option>
+</select>
+                        </li>
+                        <li>
+                          <Link to="/checkout" >
                           <button className="button primary" type="submit">
                             Checkout
-                          </button>
+                          </button></Link>
                         </li>
                       </ul>
                     </form>

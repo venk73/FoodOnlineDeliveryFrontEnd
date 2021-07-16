@@ -8,20 +8,31 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import {makeStyles} from '@material-ui/core';
+const useStyles=makeStyles(()=>(
+    {
+      tabname:{
+        fontSize:20
+      }
+    }
+  )
+  )
 const CustomerLogin=({handleChange})=>{
     let history = useHistory();
+    const classes=useStyles();
     const paperStyle = { padding: 20, height: '73vh', width: 400, margin: "0 auto" }
     const avatarStyle = { backgroundColor: '#1bbd7e' }
     const btnstyle = { margin: '8px 0' }
     const [initialValues,setCustomerLogin] =useState( {
-        username: '',
+        userName: '',
         password: '',
-        remember: false,
+        
     });
     const loginHandler =()=>{
-        history.push('/CustomerDashboard');
+        history.push('/customerdashboard');
+
     }
-    const {username,password}=initialValues;
+    const {userName,password}=initialValues;
     const onInputChange=(e)=>{
         setCustomerLogin({...initialValues,[e.target.name]: e.target.value});
     };
@@ -41,25 +52,28 @@ const CustomerLogin=({handleChange})=>{
             //history.push("/");
           })
           .catch((err) => console.log(err));
+          
         //redirect to home page after storing
       };
     return (
-        <Grid>
-            <Paper style={paperStyle}>
+        <Grid >
+            <Paper style={paperStyle} className={classes.tabname}>
                 <Grid align='center'>
                     <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
                     <h2>Sign In</h2>
                 </Grid>
                 <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                     {(props) => (
-                        <Form>
-                            <Field as={TextField} label='Username' name="username"
+                        <Form onSubmit={loginHandler}>
+                            <Field as={TextField}  label='Username' type="email" name="userName"
+                            value={userName} onChange={(e) => onInputChange(e)}
                                 placeholder='Enter username' fullWidth required
-                                helperText={<ErrorMessage name="username" value={username} onChange={(e) => onInputChange(e)}/>}
+                                helperText={<ErrorMessage name="username" />}
                             />
                             <Field as={TextField} label='Password' name="password"
+                            value={password} onChange={(e) => onInputChange(e)}
                                 placeholder='Enter password' type='password' fullWidth required
-                                helperText={<ErrorMessage name="password" value={password} onChange={(e) => onInputChange(e)}/>} />
+                                helperText={<ErrorMessage name="password" />} />
                             <Field as={FormControlLabel}
                                 name='remember'
                                 control={
@@ -69,8 +83,10 @@ const CustomerLogin=({handleChange})=>{
                                 }
                                 label="Remember me"
                             />
-                            
-                           <Button onClick={loginHandler}>LOgin</Button>
+                              <Button type='submit' color='primary' variant="contained" disabled={props.isSubmitting}
+                                style={btnstyle} fullWidth>{props.isSubmitting ? "Loading" : "Sign in"}</Button>
+ 
+                           {/* <Button onClick={loginHandler}>Login</Button> */}
 
                         </Form>
                     )}

@@ -7,12 +7,11 @@ const UpdateItems = ()=>
     const {itemId}= useParams(); // capture id from url params
 
     const [item,setItems]= useState({
-        itemId:"",
         itemName:"",
         cost:""
     });
     //destruction for user
-    const {itemId,itemName,cost} = item;
+    const {itemName,cost} = item;
 
     const onInputChange= e=>
     {
@@ -26,11 +25,12 @@ const UpdateItems = ()=>
         e.preventDefault();
         console.log('put method called '+itemId)
         //call put method
-     // const result =  await axios.put(`http://localhost:3001/users/${id}`,user);
-    const result=await axios.put("http://localhost:1222/api/items/updateItems" +itemId,item);
+    
+    const result=await axios.put(`http://localhost:1222/api/items/viewItemByitemId/${itemId}` );
+       
         //redirect to home page after storing
         console.log(result.data)
-        history.push("/");
+        history.push("/view");
 
     }
     useEffect(()=>
@@ -38,10 +38,10 @@ const UpdateItems = ()=>
         loadItem();
     },[])
     //to load one user or to display one user by id
-    const loadItem = async ()=>
+    const loadItem = async (itemId)=>
     {
-        //const result=await Axios.get("http://localhost:3001/users/" + id);
-       const result=await axios.get(`http://localhost:1222/api/items/viewItemByItemId/${itemId}`);
+      
+       const result=await axios.get(`http://localhost:1222/api/items/viewItemByitemId/${itemId}`);
         setItems(result.data);
     }
 
@@ -50,14 +50,7 @@ const UpdateItems = ()=>
             <div className="w-75 mx-auto shadow p-5">
                 <h2 className="text-center mb-4">Update Item</h2>
                 <form onSubmit={e=> onSubmit(e)}>
-                    <div className="form-group">
-                       <input type="text"
-                            className="form-control form-control-lg"
-                            placeholder="Enter your ItemId"
-                            name="itemId"
-                            value={itemId}
-                            onChange={e=> onInputChange(e)} />
-                    </div>
+                    
                     <div className="form-group">
                        <input type="text"
                             className="form-control form-control-lg"

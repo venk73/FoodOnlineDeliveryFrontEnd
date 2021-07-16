@@ -18,8 +18,9 @@ import EditProfile from './Component/Customer/EditProfile';
 import Category from './Component/Customer/Category/Category'
 import AddItems from './Component/Restaurant/AddItems';
 import UpdateItems from './Component/Restaurant/UpdateItems'
-import RemoveItem from './Component/Restaurant/RemoveItem'
+import ViewItem from './Component/Restaurant/ViewItem'
 import MyProfile from './MyProfile'
+import Checkout from './Component/Customer/OrdersPayment/Checkout'
 function App() {
   return (
     <Provider store={Store}>
@@ -35,48 +36,42 @@ function App() {
           <Home />
         </Route>
 
-        {/* Restaurant Router */}
-        <Route  exact path="/Restaurant" >
+    
+       
+      
+     
+      </Switch>
+      <Switch>
+      <Route  exact path="/restaurant" >
          <Restaurant/>
          
         </Route>
-
-        {/* Customer Router */}
-        <Route exact path="/Customer" >
-         <Customer/>
-      
-        </Route>
-      </Switch>
-      <Route exact path="/RestaurantDashboard">
-        <RestaurantDashboard/>
-        
-        </Route>
-      
-        <Route exact path="/RestaurantEditProfile">
-          <RestaurantEditProfile/>
-        </Route>
-        <Switch>
-          <Route path="/Add" component={AddItems}/>
-          <Route path="/Edit/:id" component={UpdateItems}/>
-          <Route path="/delete/:id" component={RemoveItem}/>
+      <Route exact path="/restaurantdashboard"><RestaurantDashboard/> </Route>
+      <Route exact path="/restauranteditprofile"><RestaurantEditProfile/></Route>
+        <Route path="/add" component={AddItems}/>
+          <Route path="/edit/:itemId" component={UpdateItems}/>
+          <Route path="/view" component={ViewItem}/>
         </Switch>
         <Switch>
-        <Route exact path="/CustomerDashboard">
+        <Route exact path="/customer" >
+         <Customer/>   </Route>
+        <Route exact path="/customerdashboard">
         <CustomerDashboard/>
       </Route>
-      <Route exact path="/EditProfile">
+      <Route exact path="/editprofile">
           <EditProfile/>
          
         </Route>
-        <Route exact path="/Category">
+        <Route exact path="/category">
             <Category/>
           </Route>
-          <Route exact path="/CartDashboard">
+          <Route exact path="/cartdashboard">
             <CartDashboard/>
           </Route>
-          <Route exact path="/MyProfile">
+          <Route exact path="/myprofile">
             <MyProfile/>
             </Route>
+            <Route exact path="/checkout" component={Checkout}/>
           </Switch>
       <FooterComponent />
     </Router>
