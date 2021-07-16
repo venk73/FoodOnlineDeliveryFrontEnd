@@ -6,13 +6,13 @@ const _addItems = (item) => ({
 });
 
 export const AddItem = (itemData = {
-        itemId:"",
+      
         itemName:"",
         cost:""
 }) => {
     return (dispatch) => {
         const item = {
-        itemId:itemData.itemId,
+   
         itemName:itemData.itemName,
         cost:itemData.cost
         };
@@ -47,6 +47,22 @@ export const updateItems = (itemId, updates) => {
         return axios.put(`items/${itemId}`, updates).then(() => {
             dispatch(_updateItem(itemId, updates));
         });
-    }
+    };
+};
+cont _getItems=(items)=>({
+    type:'Get_IITEMs',
+    items
+});
+export const getItems=()=>{
+    return (dispatch)=>{
+        return axios.get('items').then(result=>{
+            const items=[];
+            result.data.forEach(item=>{
+                items.push(item);
+            });
+            dispatch(_getItems(items));
+        });
+    };
+    
 };
 
