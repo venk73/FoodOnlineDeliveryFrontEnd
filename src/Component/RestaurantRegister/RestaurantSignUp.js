@@ -3,7 +3,7 @@ import axios from "axios";
 import '../../index.css'
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Grid, Paper, Avatar, Typography, TextField,Link } from '@material-ui/core'
+import { Grid, Paper, Avatar, Typography,Button, TextField } from '@material-ui/core'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -34,6 +34,9 @@ const RestaurantSignUp = () => {
         confirmPassword: '',
         termsAndConditions: false,
     });
+    const signinHandler =()=>{
+        history.push('/restaurant');
+    }
     const {managerName,phoneNumber,restaurantName}=initialValues;
     const onInputChange=(e)=>{
         setCustomer({...initialValues,[e.target.name]: e.target.value});
@@ -42,7 +45,7 @@ const RestaurantSignUp = () => {
         managerName: Yup.string().min(3, "It's too short").required("Required"),
 		email: Yup.string().email("Enter valid email").required("Required"),
         gender: Yup.string().oneOf(["male", "female"], "Required").required("Required"),
-        phone_number: Yup.string().required("required").matches(phoneRegExp, 'Phone number is not valid').min(10, "to short").max(10, "to long"),
+        phone_number: Yup.string().matches(phoneRegExp,'phone number not valid').required("required"),
 		restaurantName: Yup.string().min(3, "It's too short").required("Required"),
         password: Yup.string().min(8, "Password minimum length should be 8").required("Required"),
         confirmPassword: Yup.string().oneOf([Yup.ref('password')], "Password not matched").required("Required"),
@@ -73,10 +76,10 @@ const RestaurantSignUp = () => {
                 </Grid>
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                     {(props) => (
-                        <Form>
+                        <Form onSubmit={signinHandler}>
 
-                            <Field as={TextField} fullWidth name="managerName" label='ManagerName'
-                                placeholder="Enter your manager name" fullWidth required value={managerName}  helperText={<ErrorMessage name="manager name" value={managerName} onChange={(e) => onInputChange(e)}/>} />
+                            <Field as={TextField}  fullWidth name="managerName" label='ManagerName'
+                                placeholder="Enter your manager name" fullWidth required  helperText={<ErrorMessage name="managerName" />} />
 							<Field as={TextField} fullWidth name="email" label='Email'
                                 placeholder="Enter your email" fullWidth required helperText={<ErrorMessage name="email" />} />
                             <FormControl component="fieldset" style={marginTop}>
@@ -102,7 +105,9 @@ const RestaurantSignUp = () => {
                                 label="I accept the terms and conditions."
                             />
                             <FormHelperText><ErrorMessage name="termsAndConditions" /></FormHelperText>
-                            <center> <Link href="/Restaurant"  className="btn btn-primary btn btn-info">Sign Up</Link></center>
+                            <Button type='submit' variant='contained' disabled={props.isSubmitting}
+                                color='primary'>{props.isSubmitting ? "Loading" : "Sign up"}</Button>
+
                         </Form>
                     )}
                 </Formik>

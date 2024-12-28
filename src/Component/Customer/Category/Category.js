@@ -49,9 +49,12 @@ if(selectedCategoryType=='Biryanis'){
 					veg=Softdrinks1
 					}
 	return (
-		<section className="category-area my-5 brownback">
+		<section className="category-area  my-7 brownback">
 			<div className="container">
 				<nav>
+					<br/>
+					<br/>
+					
 					<ul className="nav justify-content-center">
 						<li className="nav-item" onClick={() => setSelectedCategoryType('Biryanis')}>
 							<span
@@ -124,13 +127,13 @@ if(selectedCategoryType=='Biryanis'){
 				<div className="row my-5">{selectedCategories.map((Category) => <CategoryItem Category={Category} key={Category.id} />)}</div>
 
 
-				<div >
+			
 					
-						<Link to="/CartDashboard">
+						<Link to="/cartdashboard">
 							<button className="btn btn-danger">Select Your Items</button>
 					 </Link>
 					
-				</div>
+			
 			</div>
 			
 	  <table style={{color:"white"}}>

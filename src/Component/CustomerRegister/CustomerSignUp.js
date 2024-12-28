@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Paper, Avatar, Typography, TextField, Link } from '@material-ui/core'
+import { Grid, Paper, Avatar, Typography,Button, TextField, Link } from '@material-ui/core'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -24,7 +24,7 @@ const CustomerSignUp=()=> {
         firstName: '',
 		lastName: '',
         email: '',
-        gender: 'male',
+        gender: '',
         phoneNumber: '',
         password: '',
         confirmPassword: '',
@@ -34,6 +34,9 @@ const CustomerSignUp=()=> {
     const onInputChange=(e)=>{
         setCustomer({...initialValues,[e.target.name]: e.target.value});
     };
+    const signinHandler =()=>{
+        history.push('/customer');
+    }
     const validationSchema = Yup.object().shape({
         firstName: Yup.string().min(3, "It's too short").required("Required"),
 		lastName: Yup.string().min(3, "It's too short").required("Required"),
@@ -70,7 +73,7 @@ const CustomerSignUp=()=> {
                 </Grid>
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                     {(props) => (
-                        <Form>
+                        <Form onSubmit={signinHandler}>
 
                             <Field as={TextField} fullWidth name="firstName" label='FirstName'
                                 placeholder="Enter your first name" fullWidth required helperText={<ErrorMessage name="first name" value={firstName} onChange={(e) => onInputChange(e)}/>} />
@@ -99,7 +102,9 @@ const CustomerSignUp=()=> {
                                 label="I accept the terms and conditions."
                             />
                             <FormHelperText><ErrorMessage name="termsAndConditions" /></FormHelperText>
-                            <center> <Link href="/Customer"  className="btn btn-primary btn btn-info">Sign Up</Link></center>
+                            <Button type='submit' variant='contained' disabled={props.isSubmitting}
+                                color='primary'>{props.isSubmitting ? "Loading" : "Sign up"}</Button>
+
 
                         </Form>
                     )}

@@ -9,7 +9,7 @@ class Filter extends Component {
     ) : (
       <div className="filter">
         <div className="filter-result">
-          {this.props.filteredProducts.length} Products
+          {this.props.filteredProducts.length} items
         </div>
         <div className="filter-sort">
           Order{" "}
@@ -27,7 +27,7 @@ class Filter extends Component {
             <option value="highest">Highest</option>
           </select>
         </div>
-        <div className="filter-size">
+        {/* <div className="filter-size">
           Filter{" "}
           <select
             value={this.props.size}
@@ -36,14 +36,15 @@ class Filter extends Component {
             }
           >
             <option value="">ALL</option>
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
+            <option value="Biryanis">Biryanis</option>
+            <option value="Meals">Meals</option>
+            <option value="Softdrinks">Softdrinks</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Burger">Burger</option>
+            <option value="Pizza">Pizza</option>
+            <option value="Desserts">Desserts</option>
           </select>
-        </div>
+        </div> */}
       </div>
     );
   }
